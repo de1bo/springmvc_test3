@@ -6,5 +6,5 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 		
-		<a href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>"><c:out value="${item.ifcgName}"/></a>
+		<c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.delNy}"/> <br>
 		

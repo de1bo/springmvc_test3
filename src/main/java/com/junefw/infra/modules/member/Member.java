@@ -4,7 +4,7 @@ public class Member {
 	private String seq="";
 	private String ifmmId="";
 	private String ifmmName="";
-	private Integer ifmmDelNy;
+	private Integer DelNy;
 	
 	// ------------------
 	public String getSeq() {
@@ -28,10 +28,10 @@ public class Member {
 	}
 	
 	public Integer getIfmmDelNy() {
-		return ifmmDelNy;
+		return DelNy;
 	}
 	public void setIfmmDelNy(Integer ifmmDelNy) {
-		this.ifmmDelNy = ifmmDelNy;
+		this.DelNy = DelNy;
 	}
 	
 }

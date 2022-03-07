@@ -38,13 +38,39 @@ public class CodeController {
 	public String codeGroupView(CodeVo vo, Model model) throws Exception{
 		System.out.println("vo.getIfcgSeq"+vo.getIfcgSeq());
 		
-		Code rt= service.selectOne(vo);
+		Code item= service.selectOne(vo);
 		
-		model.addAttribute("item", rt);
+		model.addAttribute("item", item);
 		
 		return "code/codeGroupView";
 	}
+	@RequestMapping(value = "/code/codeGroupForm2")
+	public String codeGroupForm2(CodeVo vo, Model model) throws Exception{
 		
-	
-
+		// 한건의 데이터를 가져옴
+		Code item= service.selectOne(vo);
+		
+		model.addAttribute("item", item);
+		
+		return "code/codeGroupForm2";
+	}
+	@RequestMapping(value = "/code/codeGroupUpdt")
+	public String codeGroupUpdt(Code dto) throws Exception{
+		
+		
+		// 수정 프로세스 실행
+		service.update(dto);
+		
+		return "";
+	}
+	// -----------------
+	// code
+	@RequestMapping(value = "/code/codeList")
+	public String codeList(Model model) throws Exception {
+		
+//		List<Code> list = service.selectList();
+//		model.addAttribute("list", list);
+		
+		return "code/codeList";
+	}
 }

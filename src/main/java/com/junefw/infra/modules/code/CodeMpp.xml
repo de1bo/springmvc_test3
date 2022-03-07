@@ -37,4 +37,13 @@
 			and delNy = 0
 			and ifcgSeq = #{ifcgSeq}
 	</select>
+	
+	<select id="update">
+		UPDATE
+				infrCodeGroup
+			SET 
+				ifcgName = #{ifcgName}
+			WHERE 1=1
+				AND ifcgSeq = #{ifcgSeq}
+	</select>
 </mapper>

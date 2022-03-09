@@ -12,10 +12,12 @@
 		</tr>	
 	</c:when>
 	<c:otherwise>
-		<c:forEach items="${list}" var="item" varStatus="status">	
+		<c:forEach items="${list}" var="item2" varStatus="status">	
 		
 		<%-- <c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.delNy}"/> <br> --%>
-		<a href="/infra/code/codeGroupView?ifcgSeq=<c:out value="${item.ifcgSeq}"/>"><c:out value="${item.ifcgName}"/></a> <br>
+		<c:out value="${item2.ifcdSeq}"/> | <a href="/infra/code/codeView?ifcdSeq=<c:out value="${item2.ifcdSeq}"/>"><c:out value="${item2.ifcdName}"/></a> | <c:out value="${item2.ifcdDelNy}"/> <br>
+		
+		
 		
 		</c:forEach>
 	</c:otherwise>

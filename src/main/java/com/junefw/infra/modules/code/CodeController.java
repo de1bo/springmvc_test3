@@ -23,7 +23,7 @@ public class CodeController {
 	}
 	@RequestMapping(value = "/code/codeGroupForm")
 	public String codeGroupForm() throws  Exception{
-		return "code/codeGroupFrom";
+		return "code/codeGroupForm";
 	}
 	
 	@RequestMapping(value = "/code/codeGroupInst")
@@ -65,12 +65,69 @@ public class CodeController {
 	}
 	// -----------------
 	// code
+//	@RequestMapping(value = "/code/codeList")
+//	public String codeList(Model model) throws Exception {
+//		
+////		List<Code> list = service.selectList();
+////		model.addAttribute("list", list);
+//		
+//		return "code/codeList";
+//	}
+	
+	/* infrCode */
+	
 	@RequestMapping(value = "/code/codeList")
 	public String codeList(Model model) throws Exception {
 		
-//		List<Code> list = service.selectList();
-//		model.addAttribute("list", list);
+		List<Code> list = service.selectListCode();
+		model.addAttribute("list", list);
 		
 		return "code/codeList";
+	}
+	@RequestMapping(value = "/code/codeForm")
+	public String codeForm(Model model) throws  Exception{
+		
+		List<Code> list = service.selectList();
+		
+		model.addAttribute("list", list);
+		
+		return "code/codeForm";
+	}
+	
+	@RequestMapping(value = "/code/codeInst")
+	public String codeInst(Code dto) throws Exception {
+		
+		service.insertCode(dto);
+
+		return "";
+	}
+	@RequestMapping(value = "/code/codeView")
+	public String codeView(CodeVo vo, Model model) throws Exception{
+		System.out.println("vo.getIfcgSeq"+vo.getIfcgSeq());
+		
+		Code item= service.selectOneCode(vo);
+		
+		model.addAttribute("item2", item);
+		
+		return "code/codeView";
+	}
+	@RequestMapping(value = "/code/codeForm2")
+	public String codeForm2(CodeVo vo, Model model) throws Exception{
+		
+		// 한건의 데이터를 가져옴
+		Code item= service.selectOneCode(vo);
+		
+		model.addAttribute("item2", item);
+		
+		return "code/codeForm2";
+	}
+	@RequestMapping(value = "/code/codeUpdt")
+	public String codeUpdt(Code dto) throws Exception{
+		
+		
+		// 수정 프로세스 실행
+		service.updateCode(dto);
+		
+		return "";
 	}
 }

@@ -7,6 +7,7 @@ public class Member {
 	private Integer DelNy;
 	
 	
+	
 	// ------------------
 	public String getSeq() {
 		return seq;

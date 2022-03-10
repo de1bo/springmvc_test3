@@ -32,7 +32,6 @@ public class MemberController {
 	@RequestMapping(value = "/member/memberInst")
 	public String memberInst(Model model, Member dto) throws Exception {
 		
-		System.out.println("dto.getIfmmId(): " + dto.getIfmmId());
 		System.out.println("dto.getIfmmName(): " + dto.getIfmmName());
 
 		// 입력을 작동시킨다.
@@ -40,6 +39,37 @@ public class MemberController {
 		
 		System.out.println("result: " + result);
 
+		return "";
+	}
+
+	/*---------------------------------*/
+	@RequestMapping(value = "/member/memberView")
+	public String MemberView(MemberVo vo, Model model) throws Exception{
+		System.out.println("vo.getIfcdSeq"+vo.getSeq());
+		
+		Member item= service.selectOne(vo);
+		
+		model.addAttribute("item", item);
+		
+		return "member/memberView";
+	}
+	@RequestMapping(value = "/member/memberForm2")
+	public String MemberForm2(MemberVo vo, Model model) throws Exception{
+		
+		// 한건의 데이터를 가져옴
+		Member item= service.selectOne(vo);
+		
+		model.addAttribute("item", item);
+		
+		return "member/memberForm2";
+	}
+	@RequestMapping(value = "/member/memberUpdt")
+	public String memberUpdt(Member dto) throws Exception{
+		
+		
+		// 수정 프로세스 실행
+		service.update(dto);
+		
 		return "";
 	}
 }

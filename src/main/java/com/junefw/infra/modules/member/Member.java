@@ -1,39 +1,34 @@
 package com.junefw.infra.modules.member;
 
 public class Member {
-	private String seq="";
-	private String ifmmId="";
+	private Integer seq;
 	private String ifmmName="";
-	private Integer DelNy;
+	private Integer ifmmDelNy;
 	
 	
 	
 	// ------------------
-	public String getSeq() {
+	
+	public Integer getSeq() {
 		return seq;
 	}
-	public void setSeq(String seq) {
+	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
-	public String getIfmmId() {
-		return ifmmId;
-	}
 	
-	public void setIfmmId(String ifmmId) {
-		this.ifmmId = ifmmId;
-	}
 	public String getIfmmName() {
 		return ifmmName;
 	}
 	public void setIfmmName(String ifmmName) {
 		this.ifmmName = ifmmName;
 	}
-	
 	public Integer getIfmmDelNy() {
-		return DelNy;
+		return ifmmDelNy;
 	}
 	public void setIfmmDelNy(Integer ifmmDelNy) {
-		this.DelNy = DelNy;
+		this.ifmmDelNy = ifmmDelNy;
 	}
+	
+	
 	
 }

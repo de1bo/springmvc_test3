@@ -7,7 +7,7 @@
 		<!-- mysql s 2022.02.15 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/nct" />
+		<property name="url" value="jdbc:mysql://localhost:3306/eatja" />
 		<property name="username" value="root" />
 		<property name="password" value="288016" />
 	</bean>

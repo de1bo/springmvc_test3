@@ -9,23 +9,43 @@
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.member.Member"></resultMap>
 
 	<select id="selectList" resultMap="resultMapObj">
-			select
-					seq
-				 ,ifmmId
-				, ifmmName
-			from
-				intrMember
+			SELECT 
+				a.seq
+				,a.ifmmName
+			FROM eatja.infrMember a
+			WHERE 1=1
+				AND ifmmDelNy = 0
 	</select>
 	
 	<insert id="insert">
-			insert into intrMember (
-				ifmmId
-				,ifmmName
-				,DelNy
-			) values (
-				#{ifmmId}
-				,#{ifmmName}
-				,0
+			INSERT INTO infrMember (
+			ifmmName
+			,ifmmDelNy
+			,seq
+			) VALUES (
+			#{ifmmName}
+			,0
+			,#{seq}
 			)
 	</insert>
+	<select id="selectOne" resultMap="resultMapObj">
+		select
+			a.seq
+		    , a.ifmmName
+		    , a.ifmmDelNy
+		from
+			infrMember a
+		where 1=1
+			and ifmmDelNy = 0
+			and seq = #{seq}
+	</select>
+	
+	<update id="update">
+		UPDATE
+				infrMember
+			SET 
+				ifmmName = #{ifmmName}
+			WHERE 1=1
+				AND seq = #{seq}
+	</update>
 </mapper>

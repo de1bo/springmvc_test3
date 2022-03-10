@@ -32,7 +32,7 @@ public class CodeController {
 		System.out.println();
 		// 입력 실행
 		service.insert(dto);
-		return "";
+		return "redirect:/code/codeGroupList";
 	}
 	@RequestMapping(value = "/code/codeGroupView")
 	public String codeGroupView(CodeVo vo, Model model) throws Exception{
@@ -61,7 +61,7 @@ public class CodeController {
 		// 수정 프로세스 실행
 		service.update(dto);
 		
-		return "";
+		return "redirect:code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq();
 	}
 	// -----------------
 	// code
@@ -99,7 +99,7 @@ public class CodeController {
 		
 		service.insertCode(dto);
 
-		return "";
+		return "redirect:/code/codeList";
 	}
 	@RequestMapping(value = "/code/codeView")
 	public String codeView(CodeVo vo, Model model) throws Exception{

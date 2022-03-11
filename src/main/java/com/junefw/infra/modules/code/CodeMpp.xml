@@ -13,9 +13,15 @@
 			SELECT 
 				a.ifcgSeq
 				,a.ifcgName
-			FROM nct.infrCodeGroup a
+			FROM eatja.infrCodeGroup a
 			WHERE 1=1
+				<choose>
+					<when test="shIfcgDelNy == 1">AND delNy = 1</when>
+					<when test="shIfcgDelNy == 2">AND delNy = 0</when>
+				</choose>
 				AND delNy = 0
+				<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
+				<!-- <if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND ifcgSeq = #{shIfcgSeq}</if> -->
 	</select>
 	
 	<insert id="insert">
@@ -60,6 +66,7 @@
 			infrCode a
 		WHERE 1=1
 			AND a.ifcdDelNy = 0
+			<if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND infrCodeGroup_ifcgSeq = #{shIfcgSeq}</if>
 		order by a.infrCodeGroup_ifcgSeq, ifcdOrder
 	</select>
 	
@@ -93,6 +100,5 @@
 			WHERE 1=1
 				AND ifcdSeq = #{ifcdSeq}
 	</update>
-	
 	
 </mapper>

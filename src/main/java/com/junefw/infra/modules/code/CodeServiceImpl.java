@@ -12,8 +12,8 @@ public class CodeServiceImpl implements CodeService{
 	CodeDao dao;
 	
 	@Override
-	public List<Code> selectList() throws Exception {
-		return dao.selectList(); 
+	public List<Code> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo); 
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class CodeServiceImpl implements CodeService{
 	/* infrCode */
 
 	@Override
-	public List<Code> selectListCode() throws Exception {
+	public List<Code> selectListCode(CodeVo vo) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.selectListCode(); 
+		return dao.selectListCode(vo); 
 	}
 
 	@Override

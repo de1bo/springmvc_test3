@@ -4,6 +4,7 @@ public class Code {
 	
 	private String ifcgSeq;
 	private String ifcgName;
+	private String ifcgeEng;
 	private Integer delNy;
 	
 	private String ifcdSeq;
@@ -11,7 +12,6 @@ public class Code {
 	private String ifcdDelNy;
 	private String infrCodeGroup_ifcgSeq;
 //	private String ifcgSeq;
-	
 	// --------------------
 	public String getIfcgSeq() {
 		return ifcgSeq;
@@ -25,15 +25,18 @@ public class Code {
 	public void setIfcgName(String ifcgName) {
 		this.ifcgName = ifcgName;
 	}
+	public String getIfcgeEng() {
+		return ifcgeEng;
+	}
+	public void setIfcgeEng(String ifcgeEng) {
+		this.ifcgeEng = ifcgeEng;
+	}
 	public Integer getDelNy() {
 		return delNy;
 	}
 	public void setDelNy(Integer delNy) {
 		this.delNy = delNy;
 	}
-	
-	
-	
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}
@@ -61,4 +64,5 @@ public class Code {
 	
 	
 	
+
 }

@@ -7,20 +7,37 @@
 <mapper namespace="com.junefw.infra.modules.code.CodeMpp"> <!-- 지금 파일 지정 -->
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap>
+<!-- infrCodeGroup -->
 
-			<!-- infrCodeGroup -->
+	<sql id="selectCommon">
+		FROM eatja.infrCodeGroup a
+			WHERE 1=1
+				<choose>
+					<when test="shIfcgDelNy == 1">AND a.delNy = 1</when>
+					<when test="shIfcgDelNy == 0">AND a.delNy = 0</when>
+				</choose>
+				<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
+				<choose>
+					<when test="shOption == 1">AND a.ifcgName LIKE concat('%',#{shValue},'%')</when>
+					<when test="shOption == 2">AND a.ifcgeEng LIKE concat('%',#{shValue},'%')</when>
+				</choose>
+	</sql>
+	 
+	<select id="selectOneCount" resultType="Integer">
+			SELECT 
+				count(*)
+			<include refid="selectCommon"/>
+	</select>
+	
+			
 	<select id="selectList" resultMap="resultMapObj">
 			SELECT 
 				a.ifcgSeq
 				,a.ifcgName
-			FROM eatja.infrCodeGroup a
-			WHERE 1=1
-				<choose>
-					<when test="shIfcgDelNy == 1">AND delNy = 1</when>
-					<when test="shIfcgDelNy == 2">AND delNy = 0</when>
-				</choose>
-				AND delNy = 0
-				<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
+				,a.delNy
+				,a.ifcgeEng
+			<include refid="selectCommon"/>
+			limit #{startRnumForMysql}, #{rowNumToShow}
 				<!-- <if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND ifcgSeq = #{shIfcgSeq}</if> -->
 	</select>
 	

@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CodeController {
+
+
 
 	@Autowired
 	CodeServiceImpl service;
@@ -16,12 +19,25 @@ public class CodeController {
 	@RequestMapping(value = "/code/codeGroupList")
 	public String codeGroupList(CodeVo vo, Model model) throws Exception {
 		
-		List<Code> list = service.selectList(vo);
+		// count 가져올 것
+		int count = service.selectOneCount(vo);
 		
-		model.addAttribute("list", list);
+		vo.setParamsPaging(count);
 		
+		if(count != 0) {
+			List<Code> list = service.selectList(vo);
+			model.addAttribute("list", list);
+		} else {
+			// by pass
+		}
+		// count 가 0이 아니면 list 가져오는 부분 수정 후 model 개체에 담기
+		model.addAttribute("vo", vo);
 		return "code/codeGroupList";
 	}
+	
+	
+	
+	
 	@RequestMapping(value = "/code/codeGroupForm")
 	public String codeGroupForm() throws  Exception{
 		

@@ -4,13 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
-<c:choose>
-	<c:when test="${fn:length(list) eq 0}">
-		<tr>
-			<td class="text-center" colspan="9">There is no data!</td>
-		</tr>	
-	</c:when>
-	<c:otherwise>
+
 		
 <!DOCTYPE HTML>
 <html>
@@ -72,19 +66,18 @@
 </main>
 <img src="vendor/images/customer.png" alt="images/ro1.jpg" style="width: 100%; padding-top: 50px;">
   <div style="padding: 20px;">
-  <form action="">
 	<h1 id="jal" style="padding: 15px;" >사용자 관리</h1>
-	  <table class="border border-3">
-	  <div class="container">    	
+	  <table class="border border-3">	 
+
+	  <div class="container">    	 
 	  <tr class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
 	  	<td>
 		  	<div class="col">
 		    	<div class="col p-2">
-					<select class="form-select" aria-label="Default select example">
-		  				<option selected>삭제여부</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+					<select class="form-select" aria-label="Default select example" name="shIfmmDelNy">
+		  				<option value="">::삭제여부::
+						<option value="1">Y
+						<option value="0">N
 					</select>
 				</div>
 			</div>
@@ -104,57 +97,63 @@
 	    <td>
 		    <div class="col">
 		    	<div class="col p-2">
-					<input type="text" id="" class="form-control" placeholder="시작일">
+					<input type="text" name="shIfmmName" id="" class="form-control" placeholder="회원 이름">
 				</div>
 		    </div>
 		</td>
 	    <td>
 		    <div class="col">
 		    	<div class="col p-2">
-					<input type="text" id="" class="form-control" placeholder="종료일">
+					<input type="text" name="shValue" id="" class="form-control" placeholder="검색구분하고 세트">
 				</div>
 		    </div>
 	    </td>
 	  </tr>
 	  <tr class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-	  	<td><div class="col">
+	  	<td>
+	  		<form id="" name="" method="get" action="/infra/member/memberList">
+	  		<div class="col">
 		    	<div class="col p-2">
-					<select class="form-select" aria-label="Default select example">
-		  				<option selected>검색구분</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+					<select class="form-select" name="shOption" aria-label="Default select example">
+		  				<option value="">::검색구분::
+						<option value="1">한글
+						<option value="2">영문
 					</select>
 				</div>
-			</div></td>
+			</div>
+			</form>
+			</td>
 			<td>
 				 <div class="col">
 		    		<div class="col p-2">
-						<input type="text" id="" class="form-control" placeholder="시작일">
+						<input type="text" id="" class="form-control" placeholder="xx">
 					</div>
 		   		</div>
 			</td>
 			<td>
+			<form id="" name="" method="get" action="/infra/member/memberList">
 				<div class="col">
 		    		<div class="col p-2">
-						<button type="button" class="btn btn-warning"><img src="./images/search.svg" width="25px" height="25px"></button>
-						<button type="button" class="btn btn-danger"><img src="./images/refresh.png" width="25px" height="25px"></button>
+						<button type="submit" name="search" class="btn btn-warning"><img src="./images/search.svg" width="25px" height="25px"></button>
+						<button type="submit" name="search" class="btn btn-danger"><img src="./images/refresh.png" width="25px" height="25px"></button>
 					</div>			
+				
+				
 				</div>
+				</form>
 			</td>
-			
-			
 	  </tr>
+	  
 	</table>
 	<br><br>
 	
-	</form>
         	<select class="form-select" aria-label="Default select example" style="width:150px; float:right; border-bottom: 10px;">
 		  				<option selected>10</option>
 						<option value="1">One</option>
 						<option value="2">Two</option>
 						<option value="3">Three</option>
 					</select>
+
 		<table class="table table-hover" style="text-align: center;">
 		  <tr class="table table-success table-striped">
 		  	<td><input type="checkbox"></td>
@@ -166,18 +165,29 @@
 		  	<td>모바일 마케팅 동의</td>
 		  	<td>이메일 마케팅 동의</td>
 		  </tr>
+		  <c:choose>
+			<c:when test="${fn:length(list) eq 0}">
+				<tr>
+					<td class="text-center" colspan="9">There is no data!</td>
+				</tr>	
+			</c:when>
+		<c:otherwise>
 		  <c:forEach items="${list}" var="item" varStatus="status">
 		  <tr>
 		  	<td><input type="checkbox"></td>
 		  	<td><c:out value="${item.seq}"/></td>
 		  	<td><a href="/infra/member/memberView?seq=<c:out value="${item.seq}"/>"><c:out value="${item.ifmmName}"/></td>
-		  	<td>남</td>
-		  	<td>25</td>
+		  	<td><c:out value="${item.ifmmId}"/></td>
+		  	<td><c:out value="${item.ifmmDelNy}"/></td>
 		  	<td>경기도 광명시</td>
 		  	<td>거부</td>
 		  	<td>거부</td>
 		  </tr>
+		  
 		  </c:forEach>
+		 </c:otherwise>
+	</c:choose>
+ 
 		</table>
 	
 		<nav aria-label="Page navigation example" style="width: 300px; margin-left: auto; margin-right: auto;">
@@ -200,7 +210,9 @@
 	  </div>
 	</nav>
 	<button type="button" class="btn btn-danger" style=" float:left; border-bottom: 10px;"><img src="./images/trash-icon.png" width="25px" height="25px"></button>
+	
 	<button type="button" class="btn btn-success" style=" float:right; border-bottom: 10px;"><img src="./images/plus-sign.png" width="25px" height="25px"></button>
+	
 	</div>
 	<footer class="text-muted py-5">
   <div class="container">
@@ -215,5 +227,3 @@
 </html>
 
 	
-	</c:otherwise>
-</c:choose>	

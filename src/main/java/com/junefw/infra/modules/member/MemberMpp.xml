@@ -12,9 +12,20 @@
 			SELECT 
 				a.seq
 				,a.ifmmName
+				,a.ifmmDelNy
+				,a.ifmmId
 			FROM eatja.infrMember a
 			WHERE 1=1
-				AND ifmmDelNy = 0
+				<choose>
+					<when test="shIfmmDelNy == 1">AND a.ifmmDelNy = 1</when>
+					<when test="shIfmmDelNy == 0">AND a.ifmmDelNy = 0</when>		
+				</choose>
+				<if test="shIfmmName != null and !shIfmmName.equals('')"> AND ifmmName LIKE concat('%',#{shIfmmName},'%')</if>
+				<choose>
+					<when test="shOption == 1">AND a.ifmmName LIKE concat('%',#{shValue},'%')</when>
+					<when test="shOption == 2">AND a.ifmmId LIKE concat('%',#{shValue},'%')</when>
+				</choose>
+				<!-- <if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND ifcgSeq = #{shIfcgSeq}</if> -->
 	</select>
 	
 	<insert id="insert">

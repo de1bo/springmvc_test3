@@ -17,7 +17,7 @@ public class CodeController {
 	CodeServiceImpl service;
 	
 	@RequestMapping(value = "/code/codeGroupList")
-	public String codeGroupList(CodeVo vo, Model model) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
 		// count 가져올 것
 		int count = service.selectOneCount(vo);
@@ -31,11 +31,9 @@ public class CodeController {
 			// by pass
 		}
 		// count 가 0이 아니면 list 가져오는 부분 수정 후 model 개체에 담기
-		model.addAttribute("vo", vo);
+		/* model.addAttribute("vo", vo); */
 		return "code/codeGroupList";
 	}
-	
-	
 	
 	
 	@RequestMapping(value = "/code/codeGroupForm")
@@ -50,12 +48,14 @@ public class CodeController {
 		System.out.println();
 		// 입력 실행
 		service.insert(dto);
-		return "redirect:/code/codeGroupList";
+		System.out.println("dto.getIfcgSeq()" + dto.getIfcgSeq());
+		return "redirect:/code/codeGroupView?ifcgSeq="+ dto.getIfcgSeq();
 	}
 	@RequestMapping(value = "/code/codeGroupView")
-	public String codeGroupView(CodeVo vo, Model model) throws Exception{
+	public String codeGroupView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		System.out.println("vo.getIfcgSeq"+vo.getIfcgSeq());
 		
+		// db까지 가서 한 건의 데이터 값을 가지고 옴 vo
 		Code item= service.selectOne(vo);
 		
 		model.addAttribute("item", item);
@@ -79,7 +79,7 @@ public class CodeController {
 		// 수정 프로세스 실행
 		service.update(dto);
 		
-		return "redirect:code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq();
+		return "redirect:/code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq();
 	}
 	
 	/* infrCode */

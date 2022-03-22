@@ -37,6 +37,7 @@
 				,a.delNy
 				,a.ifcgeEng
 			<include refid="selectCommon"/>
+			ORDER BY ifcgSeq ASC
 			limit #{startRnumForMysql}, #{rowNumToShow}
 				<!-- <if test="shIfcgSeq != null and !shIfcgSeq.equals('')"> AND ifcgSeq = #{shIfcgSeq}</if> -->
 	</select>
@@ -45,12 +46,13 @@
 			INSERT INTO infrCodeGroup (
 			ifcgName
 			,delNy
-			,ifcgSeq
 			) VALUES (
 			#{ifcgName}
 			,0
-			,#{ifcgSeq}
 			)
+			<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	<select id="selectOne" resultMap="resultMapObj">
 		select

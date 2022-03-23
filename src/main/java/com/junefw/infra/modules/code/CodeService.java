@@ -9,6 +9,8 @@ public interface CodeService {
 	int insert(Code dto) throws Exception;
 	Code selectOne(CodeVo vo) throws Exception;
 	int update(Code dto) throws Exception;
+	int delete(CodeVo vo) throws Exception;
+	int updateDelet(CodeVo vo) throws Exception;
 	
 	/* infrCode */
 	List<Code> selectListCode(CodeVo vo) throws Exception;

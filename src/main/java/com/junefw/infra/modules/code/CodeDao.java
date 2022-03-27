@@ -23,11 +23,13 @@ public class CodeDao {
 	public Code selectOne(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOne", vo);}
 	public int update(Code dto) {return sqlSession.update( namespace + ".update", dto);}
 	public int delete(CodeVo vo) {return sqlSession.delete( namespace + ".delete", vo);}
-	public int updateDelete(CodeVo vo) {return sqlSession.update(namespace + ".updateDelete", vo);}
+	public int updateDelet(CodeVo vo) {return sqlSession.update(namespace + ".updateDelet", vo);}
 
 	//infrCode
 	public List<Code> selectListCode(CodeVo vo) { List<Code> list = sqlSession.selectList(namespace + ".selectListCode", vo); return list; }	
 	public int insertCode(Code dto) {return sqlSession.insert(namespace + ".insertCode", dto);}
 	public Code selectOneCode(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOneCode", vo);}
 	public int updateCode(Code dto) {return sqlSession.update( namespace + ".updateCode", dto);}
+	
+	public List<Code> selectListForCache() { List<Code> list = sqlSession.selectList(namespace + ".selectListForCache", ""); return list; }
 }

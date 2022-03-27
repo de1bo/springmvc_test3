@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -71,6 +72,17 @@ public class CodeController {
 	
 	@RequestMapping(value = "/code/codeGroupView")
 	public String codeGroupView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+		
+		// post 방식
+		System.out.println("############################");
+		System.out.println("vo.getShOption(): " + vo.getShOption());
+		System.out.println("vo.getShValue(): " + vo.getShValue());
+		System.out.println("vo.getThisPage(): " + vo.getThisPage());
+		System.out.println("vo.getIfcgSeq(): " + vo.getIfcgSeq());
+		System.out.println("############################");
+		
+		
+		
 		System.out.println("vo.getIfcgSeq"+vo.getIfcgSeq());
 		
 		// db까지 가서 한 건의 데이터 값을 가지고 옴 vo
@@ -107,7 +119,28 @@ public class CodeController {
 //		 return "redirect:/code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq() + makeQueryString(vo); 
 //		return "redirect:/code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq() +"&thisPage=" + vo.getThisPage() + "&shOption=" + vo.getShOption() + "&shValue=" + vo.getShValue();
 	}
+
+	@RequestMapping(value= "/code/codeGroupDele")
+	public String codeGroupDele(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		service.delete(vo);
+		
+		redirectAttributes.addAttribute("thisPage", vo.getThisPage());
+		redirectAttributes.addAttribute("shOption", vo.getShOption());
+		redirectAttributes.addAttribute("shValue", vo.getShValue());
+		
+		return "redirect:/code/codeGroupList";
+	}
 	
+	@RequestMapping(value= "/code/codeGroupNele")
+	public String codeGroupNele(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception{
+		service.updateDelet(vo);
+		
+		redirectAttributes.addAttribute("thisPage", vo.getThisPage());
+		redirectAttributes.addAttribute("shOption", vo.getShOption());
+		redirectAttributes.addAttribute("shValue", vo.getShValue());
+		
+		return "redirect:/code/codeGroupList";
+	}
 	/* infrCode */
 	
 	@RequestMapping(value = "/code/codeList")

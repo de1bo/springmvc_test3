@@ -76,7 +76,7 @@
 	</update>
 	
 	<update id="updateDelet">
-		UPDATE infrCodeGroup SET ifcgDelny = 1
+		UPDATE infrCodeGroup SET delNy = 1
 			WHERE 1=1
 				AND ifcgSeq = #{ifcgSeq}
 	</update>
@@ -117,11 +117,22 @@
 		SELECT 
 			a.ifcdSeq
 			, a.ifcdName
-			, a.ifcdDelNy
+			, a.ifcgSeq
 		FROM
-			infrCode a
+			infrCode
 		WHERE 1=1
 			AND a.ifcdSeq = #{ifcdSeq}
+	</select>
+	
+	<select id="selectListForCache" resultMap="resultMapObj">
+		SELECT
+			ifcdSeq
+			, ifcdName
+			, infrCodeGroup_ifcgSeq
+		FROM
+			infrCode
+		WHERE 1=1
+			AND ifcdDelNy = 0
 	</select>
 	
 	<update id="updateCode">

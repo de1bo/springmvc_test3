@@ -7,6 +7,13 @@
 
 
 <form method="post" action="/infra/member/memberInst">
+
+<select id="ifmmGenderCd" name="ifmmGenderCd">
+	<option value="">::선택::</option>
+		<c:forEach items="${codeGender}" var="itemGender" varStatus="statusGenter">
+			<option value="<c:out value="${itemGender.ifcdSeq }"/>" <c:if test="${item.ifmmGender.ifcdSeq}"/>/>
+		</c:forEach>
+</select>
 	<input type="text" name="ifmmId" placeholder="아이디">
 	<input type="text" name="ifmmName" placeholder="이름">
 	<input type="submit" value="제출">

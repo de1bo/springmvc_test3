@@ -6,8 +6,10 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 		
-		<c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.delNy}"/> <br>
-		
+		<c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.delNy}"/> |
+		<img src="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>"/><br>
+
+
 		
 		<a href="/infra/code/codeGroupList?thisPage=<c:out value="${vo.thisPage }"/>&shOption=<c:out value="${vo.shOption }"/>&shValue=<c:out value="${vo.shValue }"/>">목록</a>
 		<a href="/infra/code/codeGroupForm2?ifcgSeq=<c:out value="${item.ifcgSeq}"/>&thisPage=<c:out value="${vo.thisPage }"/>&shOption=<c:out value="${vo.shOption }"/>&shValue=<c:out value="${vo.shValue }"/>">수정</a>

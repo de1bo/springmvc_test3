@@ -3,6 +3,8 @@ package com.junefw.infra.modules.code;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Code {
 	
 	private String ifcgSeq;
@@ -15,6 +17,17 @@ public class Code {
 	private String ifcdDelNy;
 	private String infrCodeGroup_ifcgSeq;
 //	private String ifcgSeq;
+	
+	private String originalFileName;
+	private String uuidFileName;
+	
+	private MultipartFile File;
+	private MultipartFile File1;
+	
+	
+	/*
+	 * public MultipartFile file; public MultipartFile file1;
+	 */
 	
 	static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
@@ -66,6 +79,36 @@ public class Code {
 	}
 	public void setInfrCodeGroup_ifcgSeq(String infrCodeGroup_ifcgSeq) {
 		this.infrCodeGroup_ifcgSeq = infrCodeGroup_ifcgSeq;
+	}
+	public static List<Code> getCachedCodeArrayList() {
+		return cachedCodeArrayList;
+	}
+	public static void setCachedCodeArrayList(List<Code> cachedCodeArrayList) {
+		Code.cachedCodeArrayList = cachedCodeArrayList;
+	}
+	public MultipartFile getFile() {
+		return File;
+	}
+	public void setFile(MultipartFile file) {
+		File = file;
+	}
+	public MultipartFile getFile1() {
+		return File1;
+	}
+	public void setFile1(MultipartFile file1) {
+		File1 = file1;
+	}
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+	public String getUuidFileName() {
+		return uuidFileName;
+	}
+	public void setUuidFileName(String uuidFileName) {
+		this.uuidFileName = uuidFileName;
 	}
 	
 	

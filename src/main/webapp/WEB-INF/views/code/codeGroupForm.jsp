@@ -8,13 +8,16 @@
 <link href="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet"> 
 
 
-<form id="form" method="post" action="/infra/code/codeGroupInst">
+<!-- <form id="form" method="post" action="/infra/code/codeGroupInst"> -->
+<form id="form" method="post" action="/infra/code/codeGroupInst" enctype="multipart/form-data">
 <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }"/>">
 	<input type="hidden" name="shOption" value="<c:out value="${vo.shOption }"/>">
 	<input type="hidden" name="shValue" value="<c:out value="${vo.shValue }"/>">
 	<input type="hidden" name="">
 	<input type="text" name="ifcgName" placeholder="아이디">
 	<input type="text" id="abcDate" name="abcDate">
+	<br><input type="file" name="File" multiple>
+	<br><input type="file" name="File1">
 	<input type="submit" value="제출">
 </form>
 

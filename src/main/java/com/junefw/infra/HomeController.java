@@ -50,6 +50,12 @@ public class HomeController {
 		
 		return "test/map";
 	}
+	@RequestMapping(value = "/mapView")
+	public String mapView() {
+
+		
+		return "test/mapView";
+	}
 	
 	@ResponseBody //구글 로그인
 	@RequestMapping(value = "/member/GloginProc")

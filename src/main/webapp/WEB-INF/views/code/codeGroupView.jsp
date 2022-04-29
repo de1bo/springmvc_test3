@@ -6,11 +6,12 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 		
-		<c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.delNy}"/> |
+		<c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.delNy}"/><br>
 		<%-- <img src="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>"/><br> --%>
 		
-		<a href="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>"><img src="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>"/></a><br>
-		<a href="/infra/resources/uploaded/<c:out value="${item.originalFileName}"/>"><img src="/infra/resources/uploaded/<c:out value="${item.originalFileName}"/>"/></a><br>
+		<a href="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>" download="<c:out value="${item.originalFileName}"/>">다운로드하기</a><br>
+		<%-- <a href="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>"><img src="/infra/resources/uploaded/<c:out value="${item.uuidFileName}"/>"  width=200px /></a><br>
+		<a href="/infra/resources/uploaded/<c:out value="${item.originalFileName}"/>"><img src="/infra/resources/uploaded/<c:out value="${item.originalFileName}"/> width=200px"/></a><br> --%>
 
 
 		

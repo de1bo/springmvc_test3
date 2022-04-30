@@ -66,37 +66,10 @@
     		position: markerPosition,
     		image: markerImage,
     		map: map,
-    		clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정
     	});
         markers.push(marker);	//marker객체를 markers에 추가
-      // 내용
-	    var iwContent = '<div class="modal-body">'+
-	    '<h5>스토리 이미지</h5>'+
-	    '<hr>'+
-	    '<img src="'+positions[i].imageSrco+'" width="100px" height="100px"/><br><br>'+
-	    '<h5>여행 스토리</h5>'+
-	    '<hr>'+
-	    '<p class="modal-body">'+positions[i].desc+'</p>'+
-	  	'</div>'
-	  	,iwRemoveable = true;
 	  	
-	  	
-	  var infowindow = new kakao.maps.InfoWindow({
-		    content : iwContent,
-		     removable : iwRemoveable 
-		});
-	    kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
-	    
-	    
     }	// for문 끝
-    
-
-    
-    function makeClickListener(map, marker, infowindow) {
-        return function() {
-            infowindow.open(map, marker);
-        };
-    }
     
     clusterer.addMarkers(markers);
 
